@@ -105,7 +105,7 @@ export const Login = () => {
               <Row className="mb-3 mt-2 m-auto">
                 <Link to="/Signup">
                   <p className="m-2">
-                    If your new to srimagicprintz? craeate account
+                    If your new to srimagicprintz? create account
                   </p>
                 </Link>
               </Row>

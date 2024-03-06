@@ -50,7 +50,7 @@ export function Signup() {
       formdata.append("contactno", mobileNumber);
       formdata.append("confirmPassword", cpassword);
       formdata.append("primages", profimg);
-      formdata.append("state", state);
+      formdata.append("state", "tamilnadu");
       try {
         const config = {
           url: "/adduser",

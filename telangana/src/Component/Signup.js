@@ -50,7 +50,7 @@ export function Signup() {
       formdata.append("contactno", mobileNumber);
       formdata.append("confirmPassword", cpassword);
       formdata.append("primages", profimg);
-      formdata.append("state", state);
+      formdata.append("state", "telangana");
       try {
         const config = {
           url: "/adduser",
@@ -143,7 +143,7 @@ export function Signup() {
                   placeholder="Number"
                 />
               </Form.Group>
-              <Form.Group as={Col} md="6">
+              {/* <Form.Group as={Col} md="6">
                 <Form.Label>state</Form.Label>
                 <Form.Control
                   name="state"
@@ -154,7 +154,7 @@ export function Signup() {
                   type="text"
                   placeholder="state"
                 />
-              </Form.Group>
+              </Form.Group> */}
               <Form.Group as={Col} md="6">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
