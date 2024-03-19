@@ -352,6 +352,49 @@ export default function Overview() {
         <div className="row mt-3 m-auto containerPadding">
           <div className="row m-auto">
             <Card
+              className={`col-md-3 m-2 c_zoom ${"active1"}`}
+              style={{ height: "140px" }}
+            >
+              <div className="row m-auto">
+                <div className="col-md-6 m-auto">
+                  <BusinessIcon
+                    className={`iconfnt ${"active1" ? "" : "clrw"}`}
+                  />
+                </div>
+                <div className="col-md-6 m-auto">
+                  <h4 className={`row  fnt35 ${"active1" ? "" : "clrw"}`}>
+                    {totalAddClients?.length}
+                  </h4>
+                  <p className={`row  ${"active1" ? "" : "clrw"}`}>
+                    {" "}
+                    Active Clients
+                  </p>
+                </div>
+              </div>
+            </Card>
+            <Card
+              className={`col-md-3 m-2 c_zoom ${"active1"}`}
+              style={{ height: "140px" }}
+            >
+              <div className="row m-auto">
+                <div className="col-md-6 m-auto">
+                  <RunningWithErrorsIcon
+                    className={`iconfnt ${"active1" ? "" : "clrw"}`}
+                  />
+                </div>
+                <div className="col-md-6 m-auto">
+                  <h4 className={`row  fnt35 ${"active1" ? "" : "clrw"}`}>
+                    {totalRunningJob}
+                  </h4>
+                  <p className={`row  ${"active1" ? "" : "clrw"}`}>
+                    {" "}
+                    Total Running Jobs
+                  </p>
+                </div>
+              </div>
+            </Card>
+
+            <Card
               className={`col-md-3 m-2 c_zoom ${
                 activeCategory === "totalRecce" ? "active1" : ""
               }`}
@@ -444,49 +487,6 @@ export default function Overview() {
                 </div>
               </div>
             </Card>
-
-            <Card
-              className={`col-md-3 m-2 c_zoom ${"active1"}`}
-              style={{ height: "140px" }}
-            >
-              <div className="row m-auto">
-                <div className="col-md-6 m-auto">
-                  <BusinessIcon
-                    className={`iconfnt ${"active1" ? "" : "clrw"}`}
-                  />
-                </div>
-                <div className="col-md-6 m-auto">
-                  <h4 className={`row  fnt35 ${"active1" ? "" : "clrw"}`}>
-                    {totalAddClients?.length}
-                  </h4>
-                  <p className={`row  ${"active1" ? "" : "clrw"}`}>
-                    {" "}
-                    Total Number of Clients
-                  </p>
-                </div>
-              </div>
-            </Card>
-            <Card
-              className={`col-md-3 m-2 c_zoom ${"active1"}`}
-              style={{ height: "140px" }}
-            >
-              <div className="row m-auto">
-                <div className="col-md-6 m-auto">
-                  <BarChartIcon
-                    className={`iconfnt ${"active1" ? "" : "clrw"}`}
-                  />
-                </div>
-                <div className="col-md-6 m-auto">
-                  <h4 className={`row  fnt35 ${"active1" ? "" : "clrw"}`}>
-                    {totalVendorData?.length}
-                  </h4>
-                  <p className={`row  ${"active1" ? "" : "clrw"}`}>
-                    {" "}
-                    Total Number Of Vendors
-                  </p>
-                </div>
-              </div>
-            </Card>
             <Card
               className={`col-md-3 m-2 c_zoom ${"active1"}`}
               style={{ height: "140px" }}
@@ -513,18 +513,15 @@ export default function Overview() {
             >
               <div className="row m-auto">
                 <div className="col-md-6 m-auto">
-                  <RunningWithErrorsIcon
+                  <BarChartIcon
                     className={`iconfnt ${"active1" ? "" : "clrw"}`}
                   />
                 </div>
                 <div className="col-md-6 m-auto">
                   <h4 className={`row  fnt35 ${"active1" ? "" : "clrw"}`}>
-                    {totalRunningJob}
+                    {totalVendorData?.length}
                   </h4>
-                  <p className={`row  ${"active1" ? "" : "clrw"}`}>
-                    {" "}
-                    Total Running Jobs
-                  </p>
+                  <p className={`row  ${"active1" ? "" : "clrw"}`}> Billing</p>
                 </div>
               </div>
             </Card>
