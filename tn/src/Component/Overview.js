@@ -42,14 +42,27 @@ export default function Overview() {
   const [OutletDoneData, setOutletDoneData] = useState([]);
 
   const [Loading, setLoading] = useState(false);
-
+  const [QuotationData, setQuotationData] = useState([]);
   useEffect(() => {
     getAllRecce();
     getAllClientsInfo();
     getAllVendorInfo();
     getAllOutlets();
+    getQuotation();
   }, []);
-
+  const getQuotation = async () => {
+    try {
+      const res = await axios.get(`${ApiURL}/getquotation`);
+      if (res.status === 200) {
+        let quotation = res.data.data?.filter(
+          (rece) => rece.BrandState === "tamilnadu"
+        );
+        setQuotationData(quotation);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
   useEffect(() => {
     let RecceCount = 0;
     RecceData?.filter((ele) =>
@@ -74,7 +87,6 @@ export default function Overview() {
     try {
       const res = await axios.get(`${ApiURL}/getalloutlets`);
       if (res.status === 200) {
-       
         setOutletDoneData(res?.data?.outletData);
       }
     } catch (err) {
@@ -182,7 +194,9 @@ export default function Overview() {
 
       if (response.status === 200) {
         let vendor = response.data.vendors;
-        let filterCityWise = vendor?.filter((ele) => ele.vendorState === "tamilnadu");
+        let filterCityWise = vendor?.filter(
+          (ele) => ele.vendorState === "tamilnadu"
+        );
         setTotalVendorData(filterCityWise);
       } else {
         alert("Unable to fetch data");
@@ -335,16 +349,7 @@ export default function Overview() {
       {Loading ? (
         <div className="row m-auto text-center" style={{ height: "100vh" }}>
           <div className="col-md-4"></div>
-          <div className="col-md-4 m-auto ">
-            {/* <SpinnerCircular
-              size={90}
-              thickness={87}
-              speed={80}
-              color="rgba(27, 22, 22, 1)"
-              secondaryColor="rgba(214, 191, 91, 1)"
-            /> */}
-            Data Loading
-          </div>
+          <div className="col-md-4 m-auto ">Data Loading</div>
 
           <div className="col-md-4"></div>
         </div>
@@ -388,7 +393,7 @@ export default function Overview() {
                   </h4>
                   <p className={`row  ${"active1" ? "" : "clrw"}`}>
                     {" "}
-                    Total Running Jobs
+                    Running Jobs
                   </p>
                 </div>
               </div>
@@ -413,7 +418,7 @@ export default function Overview() {
                     {totalRecce}
                   </h4>
                   <p className={`row  ${"active1" ? "" : "clrw"}`}>
-                    Total Recce Jobs
+                    Recce Jobs
                   </p>
                 </div>
               </div>
@@ -436,7 +441,7 @@ export default function Overview() {
                     {totalDesign}
                   </h4>
                   <p className={`row  ${"active1" ? "" : "clrw"}`}>
-                    Total Design Jobs
+                    Design Jobs
                   </p>
                 </div>
               </div>
@@ -459,7 +464,7 @@ export default function Overview() {
                     {totalPrinting}
                   </h4>
                   <p className={`row  ${"active1" ? "" : "clrw"}`}>
-                    Total Printing Jobs
+                    Printing Jobs
                   </p>
                 </div>
               </div>
@@ -482,7 +487,7 @@ export default function Overview() {
                     {totalfabrication}
                   </h4>
                   <p className={`row  ${"active1" ? "" : "clrw"}`}>
-                    Total Fabrication Jobs
+                    Fabrication Jobs
                   </p>
                 </div>
               </div>
@@ -502,7 +507,7 @@ export default function Overview() {
                     {totalInstalation}
                   </h4>
                   <p className={`row  ${"active1" ? "" : "clrw"}`}>
-                    Total Installation{" "}
+                    Installation{" "}
                   </p>
                 </div>
               </div>
@@ -519,7 +524,7 @@ export default function Overview() {
                 </div>
                 <div className="col-md-6 m-auto">
                   <h4 className={`row  fnt35 ${"active1" ? "" : "clrw"}`}>
-                    {totalVendorData?.length}
+                    {QuotationData?.length}
                   </h4>
                   <p className={`row  ${"active1" ? "" : "clrw"}`}> Billing</p>
                 </div>

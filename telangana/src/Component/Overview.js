@@ -42,14 +42,27 @@ export default function Overview() {
   const [OutletDoneData, setOutletDoneData] = useState([]);
 
   const [Loading, setLoading] = useState(false);
-
+  const [QuotationData, setQuotationData] = useState([]);
   useEffect(() => {
     getAllRecce();
     getAllClientsInfo();
     getAllVendorInfo();
     getAllOutlets();
+    getQuotation();
   }, []);
-
+  const getQuotation = async () => {
+    try {
+      const res = await axios.get(`${ApiURL}/getquotation`);
+      if (res.status === 200) {
+        let quotation = res.data.data?.filter(
+          (rece) => rece.BrandState === "telangana"
+        );
+        setQuotationData(quotation);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
   useEffect(() => {
     let RecceCount = 0;
     RecceData?.filter((ele) =>
@@ -74,7 +87,6 @@ export default function Overview() {
     try {
       const res = await axios.get(`${ApiURL}/getalloutlets`);
       if (res.status === 200) {
-       
         setOutletDoneData(res?.data?.outletData);
       }
     } catch (err) {
@@ -182,7 +194,9 @@ export default function Overview() {
 
       if (response.status === 200) {
         let vendor = response.data.vendors;
-        let filterCityWise = vendor?.filter((ele) => ele.vendorState === "telangana");
+        let filterCityWise = vendor?.filter(
+          (ele) => ele.vendorState === "telangana"
+        );
         setTotalVendorData(filterCityWise);
       } else {
         alert("Unable to fetch data");
@@ -350,7 +364,7 @@ export default function Overview() {
         </div>
       ) : (
         <div className="row mt-3 m-auto containerPadding">
-           <div className="row m-auto">
+          <div className="row m-auto">
             <Card
               className={`col-md-3 m-2 c_zoom ${"active1"}`}
               style={{ height: "140px" }}
@@ -388,7 +402,7 @@ export default function Overview() {
                   </h4>
                   <p className={`row  ${"active1" ? "" : "clrw"}`}>
                     {" "}
-                    Total Running Jobs
+                    Running Jobs
                   </p>
                 </div>
               </div>
@@ -413,7 +427,7 @@ export default function Overview() {
                     {totalRecce}
                   </h4>
                   <p className={`row  ${"active1" ? "" : "clrw"}`}>
-                    Total Recce Jobs
+                    Recce Jobs
                   </p>
                 </div>
               </div>
@@ -436,7 +450,7 @@ export default function Overview() {
                     {totalDesign}
                   </h4>
                   <p className={`row  ${"active1" ? "" : "clrw"}`}>
-                    Total Design Jobs
+                    Design Jobs
                   </p>
                 </div>
               </div>
@@ -459,7 +473,7 @@ export default function Overview() {
                     {totalPrinting}
                   </h4>
                   <p className={`row  ${"active1" ? "" : "clrw"}`}>
-                    Total Printing Jobs
+                    Printing Jobs
                   </p>
                 </div>
               </div>
@@ -482,7 +496,7 @@ export default function Overview() {
                     {totalfabrication}
                   </h4>
                   <p className={`row  ${"active1" ? "" : "clrw"}`}>
-                    Total Fabrication Jobs
+                    Fabrication Jobs
                   </p>
                 </div>
               </div>
@@ -502,7 +516,7 @@ export default function Overview() {
                     {totalInstalation}
                   </h4>
                   <p className={`row  ${"active1" ? "" : "clrw"}`}>
-                    Total Installation{" "}
+                    Installation{" "}
                   </p>
                 </div>
               </div>
@@ -519,7 +533,7 @@ export default function Overview() {
                 </div>
                 <div className="col-md-6 m-auto">
                   <h4 className={`row  fnt35 ${"active1" ? "" : "clrw"}`}>
-                    {totalVendorData?.length}
+                    {QuotationData?.length}
                   </h4>
                   <p className={`row  ${"active1" ? "" : "clrw"}`}> Billing</p>
                 </div>
